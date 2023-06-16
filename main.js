@@ -254,7 +254,7 @@ else if (RANDOM === "firing") {
 	})
 }
 else {
-	throw new Error(`[SandPond] Unrecognised randomness mode: '${RANDOM}'`)
+	throw new Error(`[SandPonder] Unrecognised randomness mode: '${RANDOM}'`)
 }
 
 function measureConcentration(filter = (atom => atom.element != Empty)) {

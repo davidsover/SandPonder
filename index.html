@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-	<title>SandPond</title>
+	<title>SandPonder</title>
 	<meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, user-scalable=no">
 	<link rel="shortcut icon" href="Media/Images/favicon.png" />
 	<script src="Libraries/habitat.js"></script>
@@ -13,6 +13,7 @@
 			margin: 0;
 			height: 100%;
 			overflow: hidden;
+			background-color: #0d1017;
 		}
 		
 		@font-face {
@@ -32,6 +33,7 @@
 			transform: translateX(-50%);
 			top: 25vh;
 			text-align:center;
+			color: white;
 		}
 		
 		#loading img {
@@ -45,8 +47,19 @@
 
 	<div id="loading">
 		<img src="Media/Images/RedTode.png">
-		<p>Loading...</p>
+		<p>Loading?</p>
+		<p id="prideId"></p>
 	</div>
+	
+	<!-- Extremely important -->
+	
+	<script>
+		
+		let monthText = ["Only 5 months until Pride month!", "Only 1/3 years until Pride month!", "Only a season until Pride month!", "Only 1/6 years until Pride month!", "Next month will be so cool!", "Happy Pride month!", "Happy delayed Pride month!", "Only a two handsful of months until Pride month!", "Only 3/4 years until Pride month!", "Only 2/3 years until Pride month! (also happy Halloween or something? be spooky.)", "Only 7 months until Pride month!", "Merry Christmas and New Years and only half a year until Pride month to ya!"];
+		
+		document.getElementById("prideId").innerHTML = monthText[new Date().getMonth()];
+		
+	</script>
 	
 	<!-- URL Params -->
 	<script src="config.js"></script>
@@ -60,6 +73,8 @@
 	<script src="Source/Engine/Space.js"></script>
 	<script src="Source/Engine/Site.js"></script>
 	<script src="Source/Engine/Random.js"></script>
+	
+	<script src="Source/Engine/Save.js"></script>
 	
 	<!-- Elements -->
 	<script src="Source/Elements/Globals.js"></script>

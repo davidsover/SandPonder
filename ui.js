@@ -19,7 +19,7 @@ let secretMessageTimer = 0
 	UI.selectedSize = SIZE
 	UI.selectedShape = SHAPE
 	UI.selectedRandom = RANDOM
-	UI.selectedDark = DARK_MODE? "dark" : "nodark"
+	UI.selectedDark = "dark";//DARK_MODE? "dark" : "nodark"
 	UI.selectedShadow = SHADOW_MODE? "shadow" : "noshadow"
 	UI.selectedDof = DOF_MODE? "dof" : "nodof"
 	UI.selectedDimensions = D1_MODE? "d1" : (D2_MODE? "d2" : "d3")
@@ -35,6 +35,8 @@ let secretMessageTimer = 0
 			
 			body {
 				touch-action: none;
+				
+				color: white;
 			}
 			
 			#ui {
@@ -271,11 +273,19 @@ let secretMessageTimer = 0
 				<div class="heading box clickable" id="modeHeading"><div class="label">Mode</div></div>
 				<div class="heading box clickable" id="controlsHeading"><div class="label">Controls</div></div>
 				<div class="heading box clickable" id="sourceHeading"><div class="label">Source</div></div>
+				<div class="heading box clickable" id="saveHeading"><div class="label">Save</div></div>
 				<!--<div class="heading box clickable" id="configHeading"><div class="label">Config</div></div>-->
 			</div>
 			
 			<div class="windowContainer">
 			
+				<div id="save" class="minimised">
+					Save: <button onclick="copyWorldGridSave()">Copy</button><input id="saveId"></input> <button onclick="saveWorldGridToInput(false)">Save</button> <button onclick="saveWorldGridToInput(true)">Save Bottom Layer</button><br><br>
+					Load: <input id="loadId"></input> <button onclick="loadWorldGrid()">Load</button><br><br><br>
+					
+					<button onclick="downloadObject()">Download .obj File</button> (this might take a while)
+				</div>
+				
 				<div id="source" class="minimised">
 					<div class="menu">
 						<div class="heading box clickable sourceType selected" id="todeSplatSource"><div class="label">SpaceTode</div></div>
@@ -301,14 +311,14 @@ let secretMessageTimer = 0
 				
 				<div id="dropper" class="form minimised">
 					<section>
-						<div class="miniTitle">SIZE</div>
+						<div class="miniTitle">SIZE (Shift+Scroll)</div>
 						<div class="sliderContainer">
 							<input class="slider clickable" id="dropperSizeSlider" type="range" min="0" max="10">
 							<div class="inputLabel" id="dropperSizeSliderLabel"></div>
 						</div>
 					</section>
 					<section>
-						<div class="miniTitle">HEIGHT</div>
+						<div class="miniTitle">HEIGHT (Alt+Scroll)</div>
 						<div class="sliderContainer">
 							<input class="slider clickable" id="dropperHeightSlider" type="range" min="0" max="10">
 							<div class="inputLabel" id="dropperHeightSliderLabel"></div>
@@ -382,7 +392,7 @@ let secretMessageTimer = 0
 					<section>
 						<div class="miniTitle">DARK MODE</div>
 						<div id="darkOption" class="darkOption option box clickable"><div class="label">Dark</div></div>
-						<div id="nodarkOption" class="darkOption option box clickable"><div class="label">Light</div></div>
+						<!--<div id="nodarkOption" class="darkOption option box clickable"><div class="label">Light</div></div>-->
 					</section>
 					<section>
 						<div id="modeGo" class="box option clickable"><div class="label">RELOAD</div></div>

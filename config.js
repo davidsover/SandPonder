@@ -19,7 +19,7 @@ const MEDIUM_MODE = urlParams.has("medium")
 const RIDICULOUS_MODE = urlParams.has("ridiculous")
 const NO_SECRET_MODE = urlParams.has("nosecret")
 
-const DARK_MODE = urlParams.has("dark")
+const DARK_MODE = true;//urlParams.has("dark")
 
 const DEFAULT_RANDOMNESS_MODE = "track"
 const RANDOM = SHUFFLE_MODE? "shuffle" : (PURE_RANDOM_MODE? "pure" : (FIRING_MODE? "firing" : DEFAULT_RANDOMNESS_MODE))
