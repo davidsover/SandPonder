@@ -34,3 +34,5 @@ It also makes you able to download what you made as a .obj file, that you can la
 ## Smaller changes
 
 SandPonder removed light mode, you can't ponder while you're being flashed.
+
+Medium is now default.
