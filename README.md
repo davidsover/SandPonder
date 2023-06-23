@@ -6,9 +6,9 @@ SandPonder is a fork of SandPond [SandPond Link](https://github.com/TodePond/San
 SandPonder is an almost 1 to 1 copy of SandPond, except for a few changes which makes it a 1.1 to 1 copy.
 
 ## Changes
-SandPonder introduces a save and load mechanic, that allows you to save geometry of the terrain, it doesn't save the element types so it uses the active one.
+SandPonder introduces a save and load mechanic, that allows you to save the world.
 
-It also introduces 2D sands and 2D fills that work with the 2D sands
+It also introduces 2D sands and 2D fills that work with the 2D sands.
 
 It also makes you able to download what you made as a .obj file, that you can later use in a 3D software such as Blender.
 	

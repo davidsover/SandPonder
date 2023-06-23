@@ -16,7 +16,7 @@
 	function getWorldGridAsObjectFile(){
 		let text = "";
 		
-		let arr = saveWorldGridAsArray();
+		let arr = saveWorldGridAsArray(true);
 		
 		let faceVertexNums = [
 			[0, 1, 2, 3],
