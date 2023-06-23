@@ -14,8 +14,6 @@ element Sand2D {
 		@ => _
 		$    $
 	}
-	
-	default true
 }
 
 element Sand2D2 {
@@ -123,5 +121,39 @@ element Fill2D2Off {
 	prop state SOLID
 	prop temperature ROOM
 }
+
+/* This doesn't work on the edges for some reason 🤔
+element Solidifier {
+	colour "#777777"
+	emissive "#000000"
+	category "SandPonder"
+	prop state SOLID
+	prop temperature ROOM
+	
+	
+	given a (element) => (element !== Solidifier && element !== Fill2DOff && element !== Empty)
+	change a (atom) => atom
+	
+	given o (element) => (element === Fill2DOff)
+	change o () => new Fill2DOff()
+	
+	
+	rule {
+		@ => _
+		_    @
+	}
+	
+	rule {
+		all(xyz.directions) {
+			@a => @$
+		}
+	}
+	
+	rule {
+		@ => o
+	}
+	
+	default true
+}*/
 
 `

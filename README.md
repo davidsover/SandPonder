@@ -8,6 +8,8 @@ SandPonder is an almost 1 to 1 copy of SandPond, except for a few changes which 
 ## Changes
 SandPonder introduces a save and load mechanic, that allows you to save geometry of the terrain, it doesn't save the element types so it uses the active one.
 
+It also introduces 2D sands and 2D fills that work with the 2D sands
+
 It also makes you able to download what you made as a .obj file, that you can later use in a 3D software such as Blender.
 	
 	Note: Half of the normals are rotated the wrong way, to fix this: 
