@@ -280,7 +280,7 @@ let secretMessageTimer = 0
 			<div class="windowContainer">
 			
 				<div id="save" class="minimised">
-					Save: <button onclick="copyWorldGridSave()">Copy</button><input id="saveId"></input> <button onclick="saveWorldGridToInput()">Save</button><br><br>
+					Save: <button onclick="copyWorldGridSave()">Copy</button><input id="saveId"></input> <button onclick="saveWorldGridToInput()">Save</button> <button onclick="saveElementlessWorldGridToInput()">Save World as Current Element</button><br><br>
 					Load: <input id="loadId"></input> <button onclick="loadWorldGrid()">Load</button><br><br><br>
 					
 					<button onclick="downloadObject()">Download .obj File</button> (this might take a while)

@@ -12,7 +12,7 @@ element Sand2D {
 		_    @
 		
 		@ => _
-		$    $
+		$    .
 	}
 }
 
@@ -43,13 +43,13 @@ element Fill2D {
 	
 	rule {
 		for(xz) {
-			@_ => @$
-			aa    aa
+			@_ => .$
+			aa    ..
 		}
 		
 		for(xz) {
 			@ => o
-			a    a
+			a    .
 		}
 	}
 	
@@ -58,10 +58,10 @@ element Fill2D {
 		_    @
 		
 		@ => _
-		$    $
+		$    .
 		
 		@ => _
-		o    o
+		o    .
 	}
 }
 
@@ -83,13 +83,13 @@ element Fill2D2 {
 	
 	rule {
 		for(xz) {
-			@_ => @$
-			aa    aa
+			@_ => .$
+			aa    ..
 		}
 		
 		for(xz) {
 			@ => o
-			a    a
+			a    .
 		}
 	}
 	
@@ -98,10 +98,10 @@ element Fill2D2 {
 		_    @
 		
 		@ => _
-		$    $
+		$    .
 		
 		@ => _
-		o    o
+		o    .
 	}
 }
 
@@ -145,7 +145,7 @@ element Solidifier {
 	
 	rule {
 		all(xyz.directions) {
-			@a => @$
+			@a => .@
 		}
 	}
 	
