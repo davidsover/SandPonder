@@ -10,6 +10,8 @@ const secretMessageDelay = 1300
 let secretMessageTimer = 0
 
 
+let isEditorEnabled = false;
+
 {
 	//=========//
 	// Globals //
@@ -274,6 +276,7 @@ let secretMessageTimer = 0
 				<div class="heading box clickable" id="controlsHeading"><div class="label">Controls</div></div>
 				<div class="heading box clickable" id="sourceHeading"><div class="label">Source</div></div>
 				<div class="heading box clickable" id="saveHeading"><div class="label">Save</div></div>
+				<div class="heading box clickable" id="editorHeading"><div class="label">Editor</div></div>
 				<!--<div class="heading box clickable" id="configHeading"><div class="label">Config</div></div>-->
 			</div>
 			
@@ -284,6 +287,10 @@ let secretMessageTimer = 0
 					Load: <input id="loadId"></input> <button onclick="loadWorldGrid()">Load</button><br><br><br>
 					
 					<button onclick="downloadObject()">Download .obj File</button> (this might take a while)
+				</div>
+				
+				<div id="editor" class="minimised">
+					<canvas id="editorCanvasId" style="display: none; position: absolute;"></canvas>
 				</div>
 				
 				<div id="source" class="minimised">
@@ -925,6 +932,8 @@ let secretMessageTimer = 0
 				orbit.enableZoom = true
 				//orbit.mouseButtons.MIDDLE = THREE.MOUSE.PAN
 			}*/
+			
+			isEditorEnabled = false;
 		}
 		
 		if (newHeading) {
@@ -936,8 +945,11 @@ let secretMessageTimer = 0
 				orbit.enableZoom = false
 				//orbit.mouseButtons.MIDDLE = undefined
 			}*/
+			
+			isEditorEnabled = (id == "editorHeading");
 		}
 		
+		toggleEditor();
 	})
 	
 	$("#searchHeading").on.click(function() {

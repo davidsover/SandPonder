@@ -67,15 +67,7 @@
 			}
 		}
 		
-		
-		let elementlessArr = {};
-		
-		let selectedElementName = UI.selectedElement().element.name;
-		
-		elementlessArr[selectedElementName] = arr;
-		
-		
-		return (isElementless) ? elementlessArr : elements;
+		return (isElementless) ? arr : elements;
 	}
 	
 	function saveWorldGridToInput(){
@@ -83,7 +75,14 @@
 	}
 	
 	function saveElementlessWorldGridToInput(){
-		document.getElementById("saveId").value = JSON.stringify(saveWorldGridAsArray(true));
+		let elementlessArr = {};
+		
+		let selectedElementName = UI.selectedElement().element.name;
+		
+		elementlessArr[selectedElementName] = saveWorldGridAsArray(true);
+		
+		
+		document.getElementById("saveId").value = JSON.stringify(elementlessArr);
 	}
 	
 	

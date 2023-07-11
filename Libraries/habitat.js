@@ -1338,7 +1338,18 @@ Reflect.defineProperty(Set.prototype, "length", {
 			
 			this.process(tickTime)
 			this.resize()
-			this.draw()
+			
+			let shouldDraw = true;
+			
+			if (typeof isEditorEnabled !== "undefined"){
+				if (isEditorEnabled){
+					shouldDraw = false;
+				}
+			}
+			
+			if (shouldDraw){
+				this.draw()
+			}
 			
 			this.previousTimeStamp = timeStamp
 			//setTimeout(() => this.render())
@@ -1354,6 +1365,8 @@ Reflect.defineProperty(Set.prototype, "length", {
 			this.camera.aspect = this.canvas.clientWidth / this.canvas.clientHeight
 			this.camera.updateProjectionMatrix()
 			if (this.composer) this.composer.setSize(this.canvas.clientWidth, this.canvas.clientHeight)
+			
+			resizeEditor();
 		}
 		
 		getCursorPosition3D(filter = undefined, objects = this.scene.children) {
@@ -3820,116 +3833,122 @@ THREE.OrbitControls = function ( object, domElement ) {
 	//
 
 	function onMouseDown( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		// Prevent the browser from scrolling.
-		// MOD: commented out by Luke on 11/05/20 cos it was interfering with my menu UI
-		//event.preventDefault();
-		// MOD: preventDefault for middle mouse button only
-		if (event.buttons === 4) event.preventDefault()
-
-		// Manually set the focus since calling preventDefault above
-		// prevents the browser from setting it automatically.
-
-		scope.domElement.focus ? scope.domElement.focus() : window.focus();
-
-		var mouseAction;
-
-		switch ( event.button ) {
-
-			case 0:
-
-				mouseAction = scope.mouseButtons.LEFT;
-				break;
-
-			case 1:
-
-				mouseAction = scope.mouseButtons.MIDDLE;
-				break;
-
-			case 2:
-
-				mouseAction = scope.mouseButtons.RIGHT;
-				break;
-
-			default:
-
-				mouseAction = - 1;
-
+		let shouldHandleMouse = true;
+		
+		if (typeof isEditorEnabled !== undefined){
+			shouldHandleMouse = !isEditorEnabled; //this still throws an error if you click while the page is loading for some reason?
 		}
+		
+		if (shouldHandleMouse){
+			if ( scope.enabled === false ) return;
 
-		switch ( mouseAction ) {
+			// Prevent the browser from scrolling.
+			// MOD: commented out by Luke on 11/05/20 cos it was interfering with my menu UI
+			//event.preventDefault();
+			// MOD: preventDefault for middle mouse button only
+			if (event.buttons === 4) event.preventDefault()
 
-			case THREE.MOUSE.DOLLY:
+			// Manually set the focus since calling preventDefault above
+			// prevents the browser from setting it automatically.
 
-				if ( scope.enableZoom === false ) return;
+			scope.domElement.focus ? scope.domElement.focus() : window.focus();
 
-				handleMouseDownDolly( event );
+			var mouseAction;
 
-				state = STATE.DOLLY;
+			switch ( event.button ) {
 
-				break;
+				case 0:
 
-			case THREE.MOUSE.ROTATE:
+					mouseAction = scope.mouseButtons.LEFT;
+					break;
 
-				if ( event.ctrlKey || event.metaKey || event.shiftKey ) {
+				case 1:
 
-					if ( scope.enablePan === false ) return;
+					mouseAction = scope.mouseButtons.MIDDLE;
+					break;
 
-					handleMouseDownPan( event );
+				case 2:
 
-					state = STATE.PAN;
+					mouseAction = scope.mouseButtons.RIGHT;
+					break;
 
-				} else {
+				default:
 
-					if ( scope.enableRotate === false ) return;
+					mouseAction = - 1;
 
-					handleMouseDownRotate( event );
+			}
 
-					state = STATE.ROTATE;
+			switch ( mouseAction ) {
 
-				}
+				case THREE.MOUSE.DOLLY:
 
-				break;
+					if ( scope.enableZoom === false ) return;
 
-			case THREE.MOUSE.PAN:
+					handleMouseDownDolly( event );
 
-				if ( event.ctrlKey || event.metaKey || event.shiftKey ) {
+					state = STATE.DOLLY;
 
-					if ( scope.enableRotate === false ) return;
+					break;
 
-					handleMouseDownRotate( event );
+				case THREE.MOUSE.ROTATE:
 
-					state = STATE.ROTATE;
+					if ( event.ctrlKey || event.metaKey || event.shiftKey ) {
 
-				} else {
+						if ( scope.enablePan === false ) return;
 
-					if ( scope.enablePan === false ) return;
+						handleMouseDownPan( event );
 
-					handleMouseDownPan( event );
+						state = STATE.PAN;
 
-					state = STATE.PAN;
+					} else {
 
-				}
+						if ( scope.enableRotate === false ) return;
 
-				break;
+						handleMouseDownRotate( event );
 
-			default:
+						state = STATE.ROTATE;
 
-				state = STATE.NONE;
+					}
 
+					break;
+
+				case THREE.MOUSE.PAN:
+
+					if ( event.ctrlKey || event.metaKey || event.shiftKey ) {
+
+						if ( scope.enableRotate === false ) return;
+
+						handleMouseDownRotate( event );
+
+						state = STATE.ROTATE;
+
+					} else {
+
+						if ( scope.enablePan === false ) return;
+
+						handleMouseDownPan( event );
+
+						state = STATE.PAN;
+
+					}
+
+					break;
+
+				default:
+
+					state = STATE.NONE;
+
+			}
+
+			if ( state !== STATE.NONE ) {
+
+				document.addEventListener( 'mousemove', onMouseMove, false );
+				document.addEventListener( 'mouseup', onMouseUp, false );
+
+				scope.dispatchEvent( startEvent );
+
+			}
 		}
-
-		if ( state !== STATE.NONE ) {
-
-			document.addEventListener( 'mousemove', onMouseMove, false );
-			document.addEventListener( 'mouseup', onMouseUp, false );
-
-			scope.dispatchEvent( startEvent );
-
-		}
-
 	}
 
 	function onMouseMove( event ) {

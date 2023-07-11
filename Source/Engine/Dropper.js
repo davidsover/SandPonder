@@ -223,6 +223,7 @@ let DROPPER_OVERRIDE = false
 	const dropAtom = (x, y, z, yOffset = 0, justShow = false, shadowNumber = 0, yOverride = Math.floor(DROPPER_HEIGHT)) => {
 		if (!UI) return
 		if (UI.selectedElement === undefined) return
+		if (isEditorEnabled) return
 		const atomType = (dropAtomArgs.elementName != undefined) ? SpaceTode.global.elements[dropAtomArgs.elementName] : UI.selectedElement;
 		const dropStart = (dropAtomArgs.shouldDropFromTop) ? MAX_Y : MAX_Y - yOverride;
 		let alteredY = dropStart + yOffset

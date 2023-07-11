@@ -1,5 +1,28 @@
 SpaceTode`
 
+element Bad {
+	colour "#ffffff"
+	emissive "#000000"
+	category "SandPonder"
+	prop state SOLID
+	prop temperature ROOM
+	
+	{
+		symbol W Water
+		@ => W
+		W    @
+	}
+	{
+		symbol W Sand
+		W@_ => ._@
+	}
+	
+	rule{@=>_}
+	@=>_
+	@ => _
+	
+	//default true
+}
 element Sand2D {
 	colour "#ffcc00"
 	emissive "#000000"
@@ -131,7 +154,7 @@ element Solidifier {
 	prop temperature ROOM
 	
 	
-	given a (element) => (element !== Solidifier && element !== Fill2DOff && element !== Empty)
+	given a (element) => (element !== Solidifier && element !== Fill2DOff && element !== Empty && element !== Void)
 	change a (atom) => atom
 	
 	given o (element) => (element === Fill2DOff)
@@ -153,7 +176,7 @@ element Solidifier {
 		@ => o
 	}
 	
-	default true
+	//default true
 }*/
 
 `

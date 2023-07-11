@@ -159,7 +159,7 @@ element Fire {
 	given n (element, selfElement) => element !== selfElement
 	n    .
 	@ => _
-	
+	default true;
 }
 
 element Magma {
